@@ -1,22 +1,22 @@
-l|mute|unmute|show video|hide video|screenshot) button$/) do |button|
-on_page(@video_chat_active_chat_page) do |page|
-  page.wait_for_page_to_load(timeout: 5)
-  case button
-    when 'create link'
-      page.click_element('create_video_chat_link_button')
-    when 'end call'
-      #it  takes a second to load notes from during chat to after chat
-      sleep 1
-      page.click_element('video_chat_end_call')
-    when 'mute', 'unmute'
-      sleep 1
-      page.click_element('video_chat_mute_unmute')
-    when 'show video', 'hide video'
-      page.click_element('video_chat_show_hide')
-    when 'screenshot'
-      page.click_element('take_screenshot')
+And(/^I click the (create link|end call|mute|unmute|show video|hide video|screenshot) button$/) do |button|
+  on_page(@video_chat_active_chat_page) do |page|
+    page.wait_for_page_to_load(timeout: 5)
+    case button
+      when 'create link'
+        page.click_element('create_video_chat_link_button')
+      when 'end call'
+        #it  takes a second to load notes from during chat to after chat
+        sleep 1
+        page.click_element('video_chat_end_call')
+      when 'mute', 'unmute'
+        sleep 1
+        page.click_element('video_chat_mute_unmute')
+      when 'show video', 'hide video'
+        page.click_element('video_chat_show_hide')
+      when 'screenshot'
+        page.click_element('take_screenshot')
+    end
   end
-end
 end
 
 When(/^I click and take(?: (\d+) screenshots)?$/) do |i|
